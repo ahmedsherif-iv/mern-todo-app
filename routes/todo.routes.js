@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { todoController } = require('../controllers');
 const { celebrate } = require('celebrate');
-const { opts, todoValidation } = require('../validations');
+const { todoValidation } = require('../validations');
 
 const router = Router();
 

@@ -8,11 +8,19 @@ const TodoListSchema = Schema({
         required: true,
         unique: true,
     },
-    user: {
+    shared: {
+        type: Boolean,
+        default: false,
+    },
+    createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
+    sharedBy: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }],
 }, { timestamps: true });
 
 const TodoList = mongoose.model('TodoList', TodoListSchema);

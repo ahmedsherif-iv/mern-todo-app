@@ -7,14 +7,16 @@ const TodoItemSchema = Schema({
         type: String,
         required: true,
     },
+    note: {
+        type: String,
+        default: ''
+    },
+    dueDate: {
+        type: Date,
+    },
     todoList: {
         type: Schema.Types.ObjectId,
         ref: 'TodoList',
-        required: true,
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
         required: true,
     },
 }, { timestamps: true });

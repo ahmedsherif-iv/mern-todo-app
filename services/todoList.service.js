@@ -1,7 +1,7 @@
 const { TodoList } = require('../models');
 
 const getTodoLists = async (userId) => {
-    const todoLists = await TodoList.find({ user: userId });
+    const todoLists = await TodoList.find({ createdBy: userId });
     return todoLists;
 }
 
@@ -27,7 +27,7 @@ const createTodoList = async ({ name, userId }) => {
         throw new Error('to do list already exists');
     }
 
-    const newTodoList = await TodoList.create({ name: name, user: userId });
+    const newTodoList = await TodoList.create({ name: name, createdBy: userId });
     return newTodoList;
 }
 

@@ -1,9 +1,11 @@
 const authController = require('./auth.controller');
 const userController = require('./user.controller');
-const todoController = require('./todo.controller');
+const todoListController = require('./todoList.controller');
+const todoItemController = require('./todoItem.controller');
 
 module.exports = {
     authController,
     userController,
-    todoController,
+    todoListController,
+    todoItemController
 }

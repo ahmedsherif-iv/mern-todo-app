@@ -1,4 +1,4 @@
-const { Joi, Segments, CelebrateError } = require('celebrate');
+const { Joi, Segments } = require('celebrate');
 
 const passwordMessage = 'password must contain at least one uppercase letter, one lowercase letter, and one numeric digit';
 

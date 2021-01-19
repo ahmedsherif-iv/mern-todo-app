@@ -1,4 +1,5 @@
 const userValidation = require('./user.validation');
+const todoValidation = require('./todo.validation');
 
 // celebration options
 const opts = {
@@ -9,5 +10,6 @@ const opts = {
 };
 module.exports = {
     userValidation,
+    todoValidation,
     opts,
 }

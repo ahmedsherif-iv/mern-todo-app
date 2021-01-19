@@ -1,7 +1,9 @@
 const User = require('./user');
-const Item = require('./item');
+const TodoList = require('./todoList');
+const TodoItem = require('./todoItem');
 
 module.exports = {
     User,
-    Item,
+    TodoList,
+    TodoItem,
 }

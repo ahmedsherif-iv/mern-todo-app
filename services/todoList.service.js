@@ -1,8 +1,12 @@
-const { TodoList } = require('../models');
+const { TodoList, SharedTodoList } = require('../models');
 
 const getTodoLists = async (userId) => {
     const todoLists = await TodoList.find({ createdBy: userId });
-    return todoLists;
+    const sharedLists = await SharedTodoList.find({ user: userId }).populate('todoList');
+    const lists = sharedLists.map(({ todoList }) => {
+        return todoList;
+    })
+    return todoLists.concat(lists);
 }
 
 const getTodoListById = async (id) => {
@@ -22,11 +26,6 @@ const getTodoListByOpts = async (opts) => {
 }
 
 const createTodoList = async ({ name, userId }) => {
-    const todoList = await TodoList.findOne({ name });
-    if (todoList) {
-        throw new Error('to do list already exists');
-    }
-
     const newTodoList = await TodoList.create({ name: name, createdBy: userId });
     return newTodoList;
 }
@@ -48,11 +47,22 @@ const deleteTodoListById = async (id) => {
     throw new Error('to do list not found');
 }
 
+const addMemberToList = async (todoListId, userId) => {
+    const member = await SharedTodoList.findOne({ todoList: todoListId, user: userId });
+    if (member) {
+        throw new Error('already a member of the shared list');
+    }
+
+    const result = await SharedTodoList.create({ todoList: todoListId, user: userId });
+    return result;
+}
+
 module.exports = {
     getTodoListById,
     getTodoListByOpts,
     getTodoLists,
     createTodoList,
     updateTodoListById,
-    deleteTodoListById
+    deleteTodoListById,
+    addMemberToList,
 }

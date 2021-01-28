@@ -9,5 +9,5 @@ module.exports = {
     tokenService,
     mailerService,
     todoListService,
-    todoItemService
+    todoItemService,
 }

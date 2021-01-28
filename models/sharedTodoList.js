@@ -8,7 +8,7 @@ const SharedTodoListSchema = Schema({
         ref: 'TodoList',
         required: true,
     },
-    sharedBy: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,

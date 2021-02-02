@@ -25,7 +25,10 @@ const HomeScreen = ({ location, history }) => {
         else if (userInfo) {
             setToken(userInfo.token);
         }
-    }, [token, dispatch, query.token, userInfo]);
+        else {
+            history.push('/login');
+        }
+    }, [history, token, dispatch, query.token, userInfo]);
 
     const handleLogout = () => {
         dispatch(logout());

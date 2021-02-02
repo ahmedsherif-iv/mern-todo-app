@@ -9,7 +9,7 @@ module.exports.createTodoItem = async (req, res) => {
         const todoItem = await todoItemService.createTodoItem(req.body);
         res.status(201).send(todoItem);
     } catch (error) {
-        res.status(400).send({ messsage: error.message });
+        res.status(400).send({ message: error.message });
     }
 }
 

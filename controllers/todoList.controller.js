@@ -10,7 +10,7 @@ module.exports.createTodoList = async (req, res) => {
         const todoList = await todoListService.createTodoList({ name: name, userId: req.user.id });
         res.status(201).send(todoList);
     } catch (error) {
-        res.status(400).send({ messsage: error.message });
+        res.status(400).send({ message: error.message });
     }
 }
 

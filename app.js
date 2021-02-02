@@ -31,23 +31,6 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors());
 
-if (process.env.NODE_ENV === 'production') {
-    // limit repeated failed requests to auth endpoints
-    app.use('/api/auth', rateLimiter.authLimiter);
-
-    // set static folder
-    app.use(express.static('client/build'));
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build'));
-    });
-}
-else {
-    const morgan = require('morgan');
-    app.use(morgan('dev'));
-}
-
-
 // set static folders
 app.use(express.static('public'));
 app.use(express.static('templates'));
@@ -63,6 +46,22 @@ mongoose.connect(db, {
     useFindAndModify: false,
     useCreateIndex: true
 }, () => console.log('mongodb connected'));
+
+if (process.env.NODE_ENV === 'production') {
+    // limit repeated failed requests to auth endpoints
+    app.use('/api/auth', rateLimiter.authLimiter);
+
+    // set static folder
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build'));
+    });
+}
+else {
+    const morgan = require('morgan');
+    app.use(morgan('dev'));
+}
 
 // set up routes
 app.use('/api', routes);

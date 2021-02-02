@@ -32,8 +32,8 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors());
 
-// limit repeated failed requests to auth endpoints
 if (process.env.NODE_ENV === 'production') {
+    // limit repeated failed requests to auth endpoints
     app.use('/api/auth', rateLimiter.authLimiter);
 
     // set static folder

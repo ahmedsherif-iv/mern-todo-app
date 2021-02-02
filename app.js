@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
 const passport = require('passport');
 const compression = require('compression');
 const cors = require('cors');
@@ -44,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 else {
+    const morgan = require('morgan');
     app.use(morgan('dev'));
 }
 

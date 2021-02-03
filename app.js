@@ -32,7 +32,7 @@ app.use(cors());
 app.options('*', cors());
 
 // set static folders
-app.use(express.static('templates'));
+app.use('templates', express.static('templates'));
 
 // initialize passport
 app.use(passport.initialize());
@@ -54,7 +54,6 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'client', 'build')));
 
     app.get('*', (req, res) => {
-        console.log(path.resolve(__dirname, 'client', 'build', 'index.html'));
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }

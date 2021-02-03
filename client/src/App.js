@@ -21,7 +21,6 @@ function App() {
             <Route path="/profile" component={ProfileScreen} />
             <Route exact path="/" component={HomeScreen} />
           </Switch>
-
         </div>
       </div>
     </BrowserRouter>

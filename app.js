@@ -21,8 +21,8 @@ const app = express();
 app.use(helmet());
 
 // parse json request body and urlencoded request body
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // gzip compression
 app.use(compression());
@@ -30,9 +30,6 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
-
-// set static folders
-app.use('templates', express.static('templates'));
 
 // initialize passport
 app.use(passport.initialize());
@@ -45,6 +42,10 @@ mongoose.connect(db, {
     useFindAndModify: false,
     useCreateIndex: true
 }, () => console.log('mongodb connected'));
+
+
+// set up routes
+app.use('/api', routes);
 
 if (process.env.NODE_ENV === 'production') {
     // limit repeated failed requests to auth endpoints
@@ -61,9 +62,6 @@ else {
     const morgan = require('morgan');
     app.use(morgan('dev'));
 }
-
-// set up routes
-app.use('/api', routes);
 
 // handle celebrate errors and server errors
 app.use(validationMiddleware.handleValidationError);

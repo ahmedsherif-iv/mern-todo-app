@@ -19,9 +19,9 @@ function Navbar() {
     }
   };
 
-  // useEffect(() => {
-  //   showButton();
-  // }, []);
+  useEffect(() => {
+    showButton();
+  }, []);
 
   const changeBackground = () => {
     if (window.scrollY >= 80) {
@@ -42,7 +42,6 @@ function Navbar() {
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             <img src="/images/logo.png" />
             <p>TODO-APP</p>
-            {/* <i className='fab fa-typo3' /> */}
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

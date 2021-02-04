@@ -22,11 +22,11 @@ function HeroSection() {
         </Button>
         <Button
           className='btns'
-          buttonStyle='btn--primary'
+          buttonStyle='btn--outline'
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
-          WATCH TRAILER <i class="fab fa-app-store-ios"></i>
+          APPLE APP STORE <i class="fab fa-app-store-ios"></i>
         </Button>
       </div>
     </div>

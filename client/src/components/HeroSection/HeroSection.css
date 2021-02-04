@@ -20,12 +20,12 @@ video {
 }
 
 .mock-img {
-  margin-top: -30px;
+  margin-top: -25px;
   width: 60%;
 }
 
 .hero-container>p {
-  margin-top: -50px;
+  margin-top: -75px;
   color: #fff;
   font-size: 32px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -48,7 +48,7 @@ video {
 } */
 
 .hero-btns {
-  margin-top: 32px;
+  margin-top: 10px;
 }
 
 .hero-btns .btn {
@@ -109,6 +109,10 @@ video {
 }
 
 @media screen and (max-width: 960px) {
+  .mock-img {
+    margin-top: 30px;
+    width: 100%;
+  }
   /* .hero-container>h1 {
     font-size: 70px;
     margin-top: -150px;
@@ -122,6 +126,9 @@ video {
 }
 
 @media screen and (max-width: 768px) {
+  .mock-img {
+    margin-top: 30px;
+  }
   /* .hero-container>h1 {
     font-size: 50px;
     margin-top: 50px;
@@ -129,7 +136,7 @@ video {
     margin-right: 10%;
   } */
   .hero-container>p {
-    font-size: 30px;
+    font-size: 28px;
     margin-left: 10%;
     margin-right: 10%;
   }

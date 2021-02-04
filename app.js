@@ -18,14 +18,14 @@ const app = express();
 
 // middlewares
 // set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 // parse json request body and urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // gzip compression
-app.use(compression());
+// app.use(compression());
 
 // enable cors
 app.use(cors());
@@ -43,7 +43,6 @@ mongoose.connect(db, {
     useCreateIndex: true
 }, () => console.log('mongodb connected'));
 
-
 // set up routes
 app.use('/api', routes);
 
@@ -52,10 +51,10 @@ if (process.env.NODE_ENV === 'production') {
     app.use('/api/auth', rateLimiter.authLimiter);
 
     // set static folder
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    app.get('/test', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     });
 }
 else {

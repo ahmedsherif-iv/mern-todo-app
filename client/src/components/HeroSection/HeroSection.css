@@ -19,7 +19,20 @@ video {
   object-fit: contain;
 }
 
-.hero-container>h1 {
+.mock-img {
+  margin-top: -30px;
+  width: 60%;
+}
+
+.hero-container>p {
+  margin-top: -50px;
+  color: #fff;
+  font-size: 32px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+}
+
+/* .hero-container>h1 {
   color: #fff;
   font-size: 100px;
   margin-top: -100px;
@@ -32,7 +45,7 @@ video {
   font-size: 32px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
-}
+} */
 
 .hero-btns {
   margin-top: 32px;
@@ -42,8 +55,8 @@ video {
   margin: 6px;
 }
 
-.fa-play-circle {
-  margin-left: 4px;
+.fa-app-store-ios {
+  font-size: 23px;
 }
 
 /* gradient animation */
@@ -106,9 +119,13 @@ video {
   .hero-container>h1 {
     font-size: 50px;
     margin-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
   }
   .hero-container>p {
     font-size: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
   }
   .btn-mobile {
     display: block;

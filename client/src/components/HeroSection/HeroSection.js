@@ -10,7 +10,7 @@ function HeroSection() {
 
       {/* <h1>ADVENTURE AWAITS</h1>
       <p>What are you waiting for?</p> */}
-      <img src="/images/laptop-phone-mock.png" class="mock-img" />
+      <img src="/images/laptop-phone-mock.png" className="mock-img" />
       <p>Manage your Todo lists and tasks<br /> on your web browser or your mobile phone.</p>
       <div className='hero-btns'>
         <Button
@@ -18,7 +18,7 @@ function HeroSection() {
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
-          GOOGLE PLAY STORE <i class="fab fa-google-play"></i>
+          GOOGLE PLAY STORE <i className="fab fa-google-play"></i>
         </Button>
         <Button
           className='btns'
@@ -26,7 +26,7 @@ function HeroSection() {
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
-          APPLE APP STORE <i class="fab fa-app-store-ios"></i>
+          APPLE APP STORE <i className="fab fa-app-store-ios"></i>
         </Button>
       </div>
     </div>

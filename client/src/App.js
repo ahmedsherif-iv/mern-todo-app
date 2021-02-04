@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import HeroSection from './components/HeroSection/HeroSection';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={HeroSection} />
+          <Route exact path='/' component={HomePage} />
         </Switch>
       </Router>
     </>

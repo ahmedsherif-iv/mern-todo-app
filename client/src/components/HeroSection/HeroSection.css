@@ -114,6 +114,9 @@ video {
     margin-top: 30px;
     width: 100%;
   }
+  .hero-btns {
+    margin-bottom: 120px;
+  }
   /* .hero-container>h1 {
     font-size: 70px;
     margin-top: -150px;

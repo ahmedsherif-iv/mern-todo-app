@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import { Button } from '../Button/Button';
 import './HeroSection.css';
 
@@ -10,7 +10,7 @@ function HeroSection() {
 
       {/* <h1>ADVENTURE AWAITS</h1>
       <p>What are you waiting for?</p> */}
-      <img src="/images/laptop-phone-mock.png" className="mock-img" />
+      <img src="/images/laptop-phone-mock.png" className="mock-img" alt="" />
       <p>Manage your Todo lists and tasks<br /> on your web browser or your mobile phone.</p>
       <div className='hero-btns'>
         <Button

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function CardItem(props) {
   return (
@@ -10,6 +9,7 @@ function CardItem(props) {
             <img
               className='cards__item__img'
               src={props.src}
+              alt=""
             />
           </figure>
           <div className='cards__item__info'>

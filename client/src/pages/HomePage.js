@@ -1,4 +1,5 @@
 import Cards from "../components/Cards/Cards";
+import Footer from "../components/Footer/Footer";
 import HeroSection from "../components/HeroSection/HeroSection";
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
         <>
             <HeroSection />
             <Cards />
+            <Footer />
         </>
     );
 }

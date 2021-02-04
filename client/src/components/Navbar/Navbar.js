@@ -40,7 +40,7 @@ function Navbar() {
       <nav className={scrolled ? 'navbar active' : 'navbar'}>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            <img src="/images/logo.png" />
+            <img src="/images/logo.png" alt="" />
             <p>TODO-APP</p>
           </Link>
           <div className='menu-icon' onClick={handleClick}>

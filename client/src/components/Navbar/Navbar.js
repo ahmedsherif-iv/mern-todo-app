@@ -39,10 +39,10 @@ function Navbar() {
     <>
       <nav className={scrolled ? 'navbar active' : 'navbar'}>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' id="navbar-font" onClick={closeMobileMenu}>
-            TODO-APP
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            <img src="/images/logo.png" />
+            <p>TODO-APP</p>
             {/* <i className='fab fa-typo3' /> */}
-            <img src="/images/logo.png" id="logo" />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

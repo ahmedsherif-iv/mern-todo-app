@@ -5,10 +5,10 @@ import './Navbar.css';
 import Modal from '../Modal/Modal';
 import AuthForm from '../AuthForm/AuthForm';
 
-function Navbar() {
+function Navbar({ toggleColor = false }) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const [scrolled, setSrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -28,14 +28,20 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
+    changeBackground();
   }, []);
 
   const changeBackground = () => {
-    if (window.scrollY >= 80) {
-      setSrolled(true);
+    if (toggleColor) {
+      if (window.scrollY >= 80) {
+        setScrolled(true);
+      }
+      else {
+        setScrolled(false);
+      }
     }
     else {
-      setSrolled(false);
+      setScrolled(true);
     }
   }
 

@@ -131,7 +131,7 @@ video {
 
 @media screen and (max-width: 768px) {
   .mock-img {
-    margin-top: 30px;
+    margin-top: 150px;
   }
   /* .hero-container>h1 {
     font-size: 50px;

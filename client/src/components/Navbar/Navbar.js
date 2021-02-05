@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import Modal from '../Modal/Modal';
+import AuthForm from '../AuthForm/AuthForm';
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [scrolled, setSrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(prev => !prev);
+  };
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -64,15 +71,19 @@ function Navbar() {
 
             <li>
               <Link
-                to='/login'
                 className='nav-links-mobile'
-                onClick={closeMobileMenu}
+                to='/#'
+                onClick={() => {
+                  closeMobileMenu();
+                  toggleModal();
+                }}
               >
                 LOGIN
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline' to='/login'>LOGIN</Button>}
+          {button && <Button buttonStyle='btn--outline' onClick={toggleModal}>LOGIN</Button>}
+          <Modal showModal={showModal} setShowModal={setShowModal}> <AuthForm /> </Modal>
         </div>
       </nav>
     </>

@@ -190,3 +190,30 @@ button.ghost {
     background-color: black;
     color: white;
 }
+
+@media screen and (max-width: 600px) {
+    .form-container {
+        width: 100%;
+        align-items: center;
+    }
+    .mobile-tabs {
+        position: relative;
+        z-index: 100;
+        display: flex;
+        width: 202%;
+        margin-left: -3px;
+        height: min-content;
+    }
+    .mobile-tabs button {
+        width: 100%;
+        height: 50px;
+        text-transform: uppercase;
+        color: white;
+        background-color: black;
+        border: none;
+    }
+    .selected {
+        color: black !important;
+        background-color: transparent !important;
+    }
+}

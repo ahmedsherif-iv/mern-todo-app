@@ -1,15 +1,15 @@
 import Footer from "../components/Footer/Footer"
 import Navbar from "../components/Navbar/Navbar";
-import ResetPasswordForm from "../components/ResetPasswordForm/ResetPasswordForm";
+import ForgotPasswordForm from "../components/ForgotPasswordForm/ForgotPasswordForm";
 
-const ResetPasswordPage = () => {
+const ForgotPasswordPage = () => {
     return (
         <>
             <Navbar />
-            <ResetPasswordForm />
+            <ForgotPasswordForm />
             <Footer />
         </>
     );
 }
 
-export default ResetPasswordPage;
+export default ForgotPasswordPage;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
 import "./AuthForm.css"
 
@@ -62,7 +63,7 @@ const AuthForm = () => {
                             <span>or use your account</span>
                             <input type="email" placeholder="Email" />
                             <input type="password" placeholder="Password" />
-                            <a href="#">Forgot your password?</a>
+                            <Link to='/forgot-password'>Forgot your password?</Link>
                             <button>Sign In</button>
                         </form>
                     </div>
@@ -75,7 +76,7 @@ const AuthForm = () => {
                                 <Button buttonClass="ghost" buttonStyle="btn--outline" onClick={() => showSignup(true)}>Sign In</Button>
                             </div>
                             <div className="overlay-panel overlay-right">
-                                <h1>Hello, Friend!</h1>
+                                <h1>Hello There!</h1>
                                 <p>Enter your personal details and start journey with us</p>
                                 <button className="ghost" onClick={() => showSignup(false)}>Sign Up</button>
                             </div>
@@ -97,7 +98,7 @@ const AuthForm = () => {
                                 <span>or use your account</span>
                                 <input type="email" placeholder="Email" />
                                 <input type="password" placeholder="Password" />
-                                <a href="#">Forgot your password?</a>
+                                <Link to='/forgot-password'>Forgot your password?</Link>
                                 <button>Sign In</button>
                             </form>
                         )}

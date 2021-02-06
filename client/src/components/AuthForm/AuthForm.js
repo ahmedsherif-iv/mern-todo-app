@@ -1,12 +1,24 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
+import { login } from "../../actions/userActions";
 import "./AuthForm.css"
 
 const AuthForm = () => {
     const [container, setContainer] = useState('');
     const [mobileView, setMobileView] = useState(false);
     const [viewSignupForm, setViewSignupForm] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
+
+    const handleLoginSubmit = (e) => {
+        e.preventDefault();
+        dispatch(login(email, password));
+    }
 
     const showSignup = flag => flag ? setContainer('') : setContainer('right-panel-active');
 
@@ -54,17 +66,17 @@ const AuthForm = () => {
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
-                        <form action="#">
+                        <form onSubmit={handleLoginSubmit} id="login-form">
                             <h1>Sign in</h1>
                             <div className="social-container">
                                 <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                                 <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
                             </div>
                             <span>or use your account</span>
-                            <input type="email" placeholder="Email" />
-                            <input type="password" placeholder="Password" />
+                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <Link to='/forgot-password'>Forgot your password?</Link>
-                            <button>Sign In</button>
+                            <button type="submit" form="login-form" >Sign In</button>
                         </form>
                     </div>
                     <div className="overlay-container">
@@ -89,17 +101,17 @@ const AuthForm = () => {
                 <div className='auth-container'>
                     <div className="form-container sign-in-container">
                         {!viewSignupForm && (
-                            <form action="#">
+                            <form onSubmit={handleLoginSubmit} id="login-form">
                                 <h1>Sign in</h1>
                                 <div className="social-container">
                                     <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                                     <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
                                 </div>
                                 <span>or use your account</span>
-                                <input type="email" placeholder="Email" />
-                                <input type="password" placeholder="Password" />
+                                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 <Link to='/forgot-password'>Forgot your password?</Link>
-                                <button>Sign In</button>
+                                <button type="submit" form="login-form" >Sign In</button>
                             </form>
                         )}
                         {viewSignupForm && (

@@ -24,7 +24,6 @@ function HeroSection() {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
-          onClick={console.log('hey')}
         >
           APPLE APP STORE <i className="fab fa-app-store-ios"></i>
         </Button>

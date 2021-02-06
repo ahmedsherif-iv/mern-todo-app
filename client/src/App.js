@@ -4,16 +4,18 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ListsPage from './pages/ListsPage';
 
 function App() {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path='/' component={HomePage} />
+          <Route path='/' exact component={HomePage} />
           <Route path='/forgot-password' component={ForgotPasswordPage} />
           <Route path='/reset-password' component={ResetPasswordPage} />
           <Route path='/404' component={NotFoundPage} />
+          <Route path='/lists' exact component={ListsPage} />
         </Switch>
       </Router>
     </>

@@ -1,5 +1,4 @@
 .navbar {
-  /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
   background: transparent;
   height: 80px;
   display: flex;
@@ -14,8 +13,6 @@
 
 .navbar.active {
   background: linear-gradient(90deg, black 0%, rgb(26, 23, 23) 100%);
-  /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
-  /* background: linear-gradient(90deg, #011e2e 0%, #013552 100%); */
 }
 
 .navbar-container {
@@ -70,9 +67,44 @@
   height: 100%;
 }
 
-.nav-links:hover {
+.nav-links:hover, .nav-links-select {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
+}
+
+.sub-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.sub-menu li {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  ;
+}
+
+.sub-menu li:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.sub-menu a, li {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.sub-menu-show {
+  display: block !important;
 }
 
 .fa-bars {

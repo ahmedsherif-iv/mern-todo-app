@@ -1,8 +1,17 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import { useSpring, animated } from 'react-spring';
 import './Modal.css';
 
 const Modal = ({ showModal, setShowModal, children }) => {
     const modalRef = useRef();
+
+    const animation = useSpring({
+        config: {
+            duration: 250
+        },
+        opacity: showModal ? 1 : 0,
+        transform: showModal ? `translateY(0%)` : `translateY(-100%)`
+    });
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
@@ -28,10 +37,12 @@ const Modal = ({ showModal, setShowModal, children }) => {
         <>
             { showModal && (
                 <div className="background" onClick={closeModal} ref={modalRef}>
-                    <div className="modal-wrapper">
-                        {/* <div className="modal-content"></div> */}
-                        {children}
-                    </div>
+                    <animated.div style={animation}>
+                        <div className="modal-wrapper">
+                            {/* <div className="modal-content"></div> */}
+                            {children}
+                        </div>
+                    </animated.div>
                 </div>
             )}
         </>

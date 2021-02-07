@@ -1,10 +1,11 @@
+import "./AuthForm.css"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { login, register } from "../../actions/userActions";
-import "./AuthForm.css"
-import { set } from "mongoose";
+import { FACEBOOK_AUTH_URL, GOOGLE_AUTH_URL } from "../../constants";
+
 
 const AuthForm = () => {
     const [container, setContainer] = useState('');
@@ -125,8 +126,8 @@ const AuthForm = () => {
                         <form onSubmit={handleLoginSubmit} id="login-form">
                             <h1>Sign in</h1>
                             <div className="social-container">
-                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                <a href={FACEBOOK_AUTH_URL} className="social"><i className="fab fa-facebook-f"></i></a>
+                                <a href={GOOGLE_AUTH_URL} className="social"><i className="fab fa-google-plus-g"></i></a>
                             </div>
                             <span>or use your account</span>
                             <input type="email" placeholder="Email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -162,8 +163,8 @@ const AuthForm = () => {
                             <form onSubmit={handleLoginSubmit} id="login-form">
                                 <h1>Sign in</h1>
                                 <div className="social-container">
-                                    <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                    <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                    <a href={FACEBOOK_AUTH_URL} className="social"><i className="fab fa-facebook-f"></i></a>
+                                    <a href={GOOGLE_AUTH_URL} className="social"><i className="fab fa-google-plus-g"></i></a>
                                 </div>
                                 <span>or use your account</span>
                                 <input type="email" placeholder="Email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />

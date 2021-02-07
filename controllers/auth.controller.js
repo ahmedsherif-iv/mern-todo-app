@@ -99,7 +99,7 @@ module.exports.loginWithFacebook = passport.authenticate('facebook', {
 // @access Public
 module.exports.authThirdPartyCallback = (req, res) => {
     const token = tokenService.createToken({ id: req.user.id, email: req.user.email });
-    const url = config.client.oauthRedirectUrl + '?token=' + token;
+    const url = config.client.oauthRedirectUrl + token;
     // res.send({ user: req.user, token });
     res.redirect(url);
 }

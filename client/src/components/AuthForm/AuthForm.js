@@ -147,7 +147,8 @@ const AuthForm = () => {
                             <div className="overlay-panel overlay-right">
                                 <h1>Hello There!</h1>
                                 <p>Enter your personal details and start journey with us</p>
-                                <button className="ghost" onClick={() => showSignup(false)}>Sign Up</button>
+                                {/* <button className="ghost" onClick={() => showSignup(false)}>Sign Up</button> */}
+                                <Button buttonClass="ghost" buttonStyle="btn--outline" onClick={() => showSignup(false)}>Sign Up</Button>
                             </div>
                         </div>
                     </div>

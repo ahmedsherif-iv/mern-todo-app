@@ -13,7 +13,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={HomePage} />
           <Route path='/forgot-password' component={ForgotPasswordPage} />
-          <Route path='/reset-password' component={ResetPasswordPage} />
+          <Route path='/reset-password/:token' component={ResetPasswordPage} />
           <Route path='/404' component={NotFoundPage} />
           <Route path='/lists' exact component={ListsPage} />
         </Switch>

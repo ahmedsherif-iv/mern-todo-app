@@ -35,7 +35,7 @@ module.exports.sendResetPasswordEmail = async (req, res) => {
             return res.status(404).send({ message: 'user not found' });
         }
 
-        const emailToken = tokenService.createToken({ id: user.id, email: user.email }, config.jwt.JWT_EMAIL_SECRET, '1h');
+        const emailToken = tokenService.createToken({ id: user.id, email: user.email }, config.jwt.emailSecret, '1h');
 
         // const baseUrl = req.protocol + config.client.url;
         // const url = baseUrl + `/reset-password/${emailToken}`;
@@ -49,7 +49,7 @@ module.exports.sendResetPasswordEmail = async (req, res) => {
 }
 
 // @desc Verify and save new password of user
-// @route POST /api/auth/password-reset/verify
+// @route POST /api/auth/password-reset/verify/:token
 // @access Public
 module.exports.resetPassword = async (req, res) => {
     try {

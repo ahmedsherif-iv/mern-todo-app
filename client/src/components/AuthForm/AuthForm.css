@@ -17,6 +17,11 @@
     margin: 15px 0;
 }
 
+.auth-container .error-message {
+    margin-top: 10px;
+    color: red;
+}
+
 .auth-container button {
     /* border-radius: 20px; */
     border: 1px solid black;

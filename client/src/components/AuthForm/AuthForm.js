@@ -1,26 +1,42 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
-import { login } from "../../actions/userActions";
+import { login, register } from "../../actions/userActions";
 import "./AuthForm.css"
+import { set } from "mongoose";
 
 const AuthForm = () => {
     const [container, setContainer] = useState('');
     const [mobileView, setMobileView] = useState(false);
     const [viewSignupForm, setViewSignupForm] = useState(false);
+    const [loginErrorMessage, setLoginErrorMessage] = useState('');
+    const [registerErrorMessage, setRegisterErrorMessage] = useState('');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [registerEmail, setRegisterEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [registerPassword, setRegisterPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const dispatch = useDispatch();
+    const userLogin = useSelector(state => state.userLogin);
+    const userRegister = useSelector(state => state.userRegister);
 
-    const handleLoginSubmit = (e) => {
-        e.preventDefault();
-        dispatch(login(email, password));
-    }
 
-    const showSignup = flag => flag ? setContainer('') : setContainer('right-panel-active');
+    const showSignup = flag => {
+        if (flag) {
+            setContainer('');
+            setViewSignupForm(false);
+        }
+        else {
+            setContainer('right-panel-active');
+            setViewSignupForm(true);
+        }
+    };
 
     const toggleAuth = () => setViewSignupForm(prev => !prev);
 
@@ -32,6 +48,37 @@ const AuthForm = () => {
         }
     };
 
+    const handleLoginSubmit = (e) => {
+        e.preventDefault();
+        setLoginErrorMessage('');
+        dispatch(login(email, password));
+    }
+
+    const handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        setRegisterErrorMessage('');
+        if (registerPassword === confirmPassword) {
+            const user = {
+                firstName,
+                lastName,
+                email: registerEmail,
+                password: registerPassword,
+            };
+            return dispatch(register(user));
+        }
+        setRegisterErrorMessage('passwords do not match')
+    }
+
+    useEffect(() => {
+        if (viewSignupForm) {
+            setRegisterErrorMessage(userRegister.error);
+        }
+        else {
+            setLoginErrorMessage(userLogin.error);
+        }
+
+    }, [userRegister.error, userLogin.error]);
+
     useEffect(() => {
         switchTabView();
     }, []);
@@ -42,8 +89,6 @@ const AuthForm = () => {
         <>
             {mobileView && (
                 <div className="mobile-tabs">
-                    {/* <Button>Sign in</Button>
-                    <Button>Sign up</Button> */}
                     <button className={!viewSignupForm ? 'selected' : ''} onClick={toggleAuth}>Sign in</button>
                     <button className={viewSignupForm ? 'selected' : ''} onClick={toggleAuth}>Sign up</button>
                 </div>
@@ -52,17 +97,28 @@ const AuthForm = () => {
             {!mobileView && (
                 <div className={`auth-container ${container}`}>
                     <div className="form-container sign-up-container">
-                        <form action="#">
+                        <form onSubmit={handleRegisterSubmit} id="register-form">
                             <h1>Create Account</h1>
-                            <div className="social-container">
-                                <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                            </div>
                             <span>or use your email for registration</span>
-                            <input type="text" placeholder="Name" />
-                            <input type="email" placeholder="Email" />
-                            <input type="password" placeholder="Password" />
-                            <button>Sign Up</button>
+                            <input type="text" placeholder="First Name" required="required"
+                                value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                            />
+                            <input type="text" placeholder="Last Name" required="required"
+                                value={lastName} onChange={(e) => setLastName(e.target.value)}
+                            />
+                            <input type="email" placeholder="Email" required="required"
+                                value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)}
+                            />
+                            <input type="password" placeholder="Password" required="required"
+                                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,30}"
+                                title="password must contain at least one uppercase letter, one lowercase letter, and one numeric digit"
+                                value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)}
+                            />
+                            <input type="password" placeholder="Confirm Password" required="required"
+                                value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                            <button type="submit" form="register-form">Sign Up</button>
+                            <p className='error-message'>{registerErrorMessage}</p>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
@@ -73,10 +129,11 @@ const AuthForm = () => {
                                 <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
                             </div>
                             <span>or use your account</span>
-                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="email" placeholder="Email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="password" placeholder="Password" required="required" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <Link to='/forgot-password'>Forgot your password?</Link>
                             <button type="submit" form="login-form" >Sign In</button>
+                            <p className='error-message'>{loginErrorMessage}</p>
                         </form>
                     </div>
                     <div className="overlay-container">
@@ -108,24 +165,35 @@ const AuthForm = () => {
                                     <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
                                 </div>
                                 <span>or use your account</span>
-                                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type="email" placeholder="Email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="password" placeholder="Password 0" required="required" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 <Link to='/forgot-password'>Forgot your password?</Link>
                                 <button type="submit" form="login-form" >Sign In</button>
+                                <p className='error-message'>{loginErrorMessage}</p>
                             </form>
                         )}
                         {viewSignupForm && (
-                            <form action="#">
+                            <form onSubmit={handleRegisterSubmit} id="register-form">
                                 <h1>Create Account</h1>
-                                <div className="social-container">
-                                    <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                                    <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                </div>
                                 <span>or use your email for registration</span>
-                                <input type="text" placeholder="Name" />
-                                <input type="email" placeholder="Email" />
-                                <input type="password" placeholder="Password" />
-                                <button>Sign Up</button>
+                                <input type="text" placeholder="First Name" required="required"
+                                    value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                                />
+                                <input type="text" placeholder="Last Name" required="required"
+                                    value={lastName} onChange={(e) => setLastName(e.target.value)}
+                                />
+                                <input type="email" placeholder="Email" required="required"
+                                    value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)}
+                                />
+                                <input type="password" placeholder="Password" required="required"
+                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,30}"
+                                    value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)}
+                                />
+                                <input type="password" placeholder="Confirm Password" required="required"
+                                    value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                                <button type="submit" form="register-form">Sign Up</button>
+                                <p className='error-message'>{registerErrorMessage}</p>
                             </form>
                         )}
                     </div>

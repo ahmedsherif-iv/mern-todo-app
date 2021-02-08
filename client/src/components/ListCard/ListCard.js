@@ -1,6 +1,6 @@
 import './ListCard.css';
 
-const ListCard = ({ todoList, color = 'black' }) => {
+const ListCard = ({ todoList, color = 'black', handleDelete }) => {
     return (
         <>
             <div className="card"
@@ -11,7 +11,7 @@ const ListCard = ({ todoList, color = 'black' }) => {
                 <div className="multi-button">
                     <button className="fas fa-share-alt"></button>
                     <button className="fas fa-edit"></button>
-                    <button className="fas fa-trash"></button>
+                    <button className="fas fa-trash" onClick={() => handleDelete(todoList._id)}></button>
                 </div>
                 <div className="card-data-container">
                     <h3>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTodoLists } from "../actions/todoListActions";
+import { deleteTodoList, getTodoLists } from "../actions/todoListActions";
 import ListCard from "../components/ListCard/ListCard";
 import ListsContainer from "../components/ListsContainer/ListsContainer";
 import Navbar from "../components/Navbar/Navbar"
@@ -23,6 +23,12 @@ const ListsPage = ({ history, location }) => {
 
     const redirect = location.search ? location.search.split('=')[1] : '/';
 
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure?')) {
+            dispatch(deleteTodoList(id));
+        }
+    }
+
     useEffect(() => {
         if (!userInfo) {
             history.replace(redirect);
@@ -30,7 +36,7 @@ const ListsPage = ({ history, location }) => {
         else {
             dispatch(getTodoLists());
         }
-    }, [userInfo, history, redirect, dispatch]);
+    }, [userInfo, history, redirect, dispatch, successDelete]);
 
     return (
         <>
@@ -38,7 +44,7 @@ const ListsPage = ({ history, location }) => {
             <ListsContainer >
                 {isLoading && (<h1>loading..</h1>)}
                 {todoLists && (todoLists.map(list => (
-                    <ListCard key={list._id} todoList={list} />
+                    <ListCard handleDelete={handleDelete} key={list._id} todoList={list} />
                 ))
                 )}
 

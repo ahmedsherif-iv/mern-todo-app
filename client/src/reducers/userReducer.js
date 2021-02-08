@@ -22,8 +22,6 @@ import {
     USER_RESET_PASSWORD_FAIL,
 } from '../constants/userConstants';
 
-// const userInfo = {};
-
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_LOGIN_REQUEST:

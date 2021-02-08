@@ -1,0 +1,19 @@
+.lists-section {
+    width: 100%;
+    height: fit-content;
+    margin-top: 80px;
+}
+
+.lists-section h1 {
+    padding-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lists-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-gap: 5rem;
+    padding: 5rem;
+    /* background: #f5f7fa; */
+}

@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import ListCard from "../components/ListCard/ListCard";
+import ListsContainer from "../components/ListsContainer/ListsContainer";
 import Navbar from "../components/Navbar/Navbar"
 
 const ListsPage = ({ history, location }) => {
@@ -17,6 +19,14 @@ const ListsPage = ({ history, location }) => {
     return (
         <>
             <Navbar />
+            <ListsContainer >
+                <ListCard>item 1</ListCard>
+                <ListCard>item 2</ListCard>
+                <ListCard>item 3</ListCard>
+                <ListCard>item 2</ListCard>
+                <ListCard>item 3</ListCard>
+
+            </ListsContainer>
         </>
     );
 }

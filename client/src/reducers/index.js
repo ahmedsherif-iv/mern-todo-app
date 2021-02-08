@@ -6,6 +6,12 @@ import {
     userResetPasswordReducer,
     userUpdateProfileReducer
 } from '../reducers/userReducer';
+import {
+    todoListCreateReducer,
+    todoListDeleteReducer,
+    todoListsReducer,
+    todoListUpdateReducer
+} from './todoListReducer';
 
 const rootReducer = combineReducers({
     userLogin: userLoginReducer,
@@ -14,6 +20,11 @@ const rootReducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userForgotPassword: userForgotPasswordReducer,
     userResetPassword: userResetPasswordReducer,
+
+    todoListCreate: todoListCreateReducer,
+    todoListsReducer: todoListsReducer,
+    todoListUpdate: todoListUpdateReducer,
+    todoListDelete: todoListDeleteReducer,
 });
 
 export default rootReducer;

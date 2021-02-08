@@ -9,7 +9,7 @@ import {
 import {
     todoListCreateReducer,
     todoListDeleteReducer,
-    todoListsReducer,
+    todoListReducer,
     todoListUpdateReducer
 } from './todoListReducer';
 
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
     userResetPassword: userResetPasswordReducer,
 
     todoListCreate: todoListCreateReducer,
-    todoListsReducer: todoListsReducer,
+    todoList: todoListReducer,
     todoListUpdate: todoListUpdateReducer,
     todoListDelete: todoListDeleteReducer,
 });

@@ -25,8 +25,8 @@ const getTodoListByOpts = async (opts) => {
     throw new Error('to do list not found');
 }
 
-const createTodoList = async ({ name, userId }) => {
-    const newTodoList = await TodoList.create({ name: name, createdBy: userId });
+const createTodoList = async ({ name, color, userId }) => {
+    const newTodoList = await TodoList.create({ name: name, color: color, createdBy: userId });
     return newTodoList;
 }
 

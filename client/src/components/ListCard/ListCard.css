@@ -2,7 +2,8 @@
     --background: black;
     --text: white;
     position: relative;
-    height: 12rem;
+    /* height: 12rem; */
+    height: 6rem;
     box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .05);
     box-shadow: 0 0 0rem -0.25rem var(--background);
 }
@@ -102,8 +103,8 @@
 }
 
 .card-data-container h3 {
-    margin-top: 30%;
-    margin-bottom: 30%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 .card:hover .multi-button, .card .multi-button:focus-within {

@@ -27,7 +27,7 @@ export const todoListCreateReducer = (state = {}, action) => {
     }
 };
 
-export const todoListsReducer = (state = { todoLists: [] }, action) => {
+export const todoListReducer = (state = { todoLists: [] }, action) => {
     switch (action.type) {
         case TODO_LIST_GET_REQUEST:
             return { ...state, isLoading: true };

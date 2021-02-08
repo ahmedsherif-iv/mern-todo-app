@@ -1,11 +1,11 @@
 import './ListCard.css';
 
-const ListCard = ({ children }) => {
+const ListCard = ({ todoList, color = 'black' }) => {
     return (
         <>
             <div className="card"
                 style={{
-                    '--background': 'black',
+                    '--background': color,
                     '--text': 'white',
                 }}>
                 <div className="multi-button">
@@ -15,7 +15,7 @@ const ListCard = ({ children }) => {
                 </div>
                 <div className="card-data-container">
                     <h3>
-                        {children}
+                        {todoList.name}
                     </h3>
                 </div>
             </div>

@@ -49,8 +49,8 @@ export const getTodoLists = () => async (dispatch, getState) => {
     try {
         dispatch({ type: TODO_LIST_GET_REQUEST });
 
-        const { userReducer } = getState();
-        const { userInfo } = userReducer.userLogin;
+        const { userLogin } = getState();
+        const { userInfo } = userLogin;
 
         const config = {
             headers: {
@@ -111,8 +111,8 @@ export const deleteTodoList = (id) => async (dispatch, getState) => {
     try {
         dispatch({ type: TODO_LIST_DELETE_REQUEST });
 
-        const { userReducer } = getState();
-        const { userInfo } = userReducer.userLogin;
+        const { userLogin } = getState();
+        const { userInfo } = userLogin;
 
         const config = {
             headers: {

@@ -7,6 +7,10 @@ const TodoListSchema = Schema({
         type: String,
         required: true,
     },
+    color: {
+        type: String,
+        default: '#00000',
+    },
     shared: {
         type: Boolean,
         default: false,

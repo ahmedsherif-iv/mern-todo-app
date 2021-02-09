@@ -27,6 +27,8 @@ export const createTodoList = (name, color = '#0000') => async (dispatch, getSta
             },
         };
 
+        console.log(name, color);
+
         const { data } = await axios.post('/api/todo-lists', { name, color }, config);
 
         dispatch({

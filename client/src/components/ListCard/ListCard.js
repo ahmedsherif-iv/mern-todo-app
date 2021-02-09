@@ -1,11 +1,11 @@
 import './ListCard.css';
 
-const ListCard = ({ todoList, color = 'black', handleDelete }) => {
+const ListCard = ({ todoList, color = '#000000', handleDelete }) => {
     return (
         <>
             <div className="card"
                 style={{
-                    '--background': color,
+                    '--background': todoList ? todoList.color : color,
                     '--text': 'white',
                 }}>
                 <div className="multi-button">

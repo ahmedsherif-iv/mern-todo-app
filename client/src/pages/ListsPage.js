@@ -21,6 +21,20 @@ const ListsPage = ({ history, location }) => {
         error: errorDelete,
     } = todoListDelete;
 
+    const todoListCreate = useSelector(state => state.todoListCreate);
+    const {
+        isLoading: isLoadingCreate,
+        success: successCreate,
+        error: errorCreate,
+    } = todoListCreate;
+
+    const todoListUpdate = useSelector(state => state.todoListUpdate);
+    const {
+        isLoading: isLoadingUpdate,
+        success: successUpdate,
+        error: errorUpdate,
+    } = todoListUpdate;
+
     const redirect = location.search ? location.search.split('=')[1] : '/';
 
     const handleDelete = (id) => {
@@ -36,18 +50,16 @@ const ListsPage = ({ history, location }) => {
         else {
             dispatch(getTodoLists());
         }
-    }, [userInfo, history, redirect, dispatch, successDelete]);
+    }, [userInfo, history, redirect, dispatch, successDelete, successCreate, successUpdate]);
 
     return (
         <>
             <Navbar />
-            <ListsContainer >
+            <ListsContainer>
                 {isLoading && (<h1>loading..</h1>)}
                 {todoLists && (todoLists.map(list => (
                     <ListCard handleDelete={handleDelete} key={list._id} todoList={list} />
-                ))
-                )}
-
+                )))}
             </ListsContainer>
         </>
     );

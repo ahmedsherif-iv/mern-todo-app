@@ -6,8 +6,8 @@ const config = require('../config');
 // @access  Private
 module.exports.createTodoList = async (req, res) => {
     try {
-        const { name } = req.body;
-        const todoList = await todoListService.createTodoList({ name: name, userId: req.user.id });
+        const { name, color } = req.body;
+        const todoList = await todoListService.createTodoList({ name, color, userId: req.user.id });
         res.status(201).send(todoList);
     } catch (error) {
         res.status(400).send({ message: error.message });

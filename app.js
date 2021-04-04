@@ -6,6 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const config = require('./config');
+const { SocketService } = require('./services');
 const { validationMiddleware, rateLimiter } = require('./middlewares');
 
 const routes = require('./routes');
@@ -66,4 +67,6 @@ else {
 app.use(validationMiddleware.handleValidationError);
 
 const PORT = config.PORT || 5000;
-app.listen(PORT, () => console.log(`server running on PORT: ${PORT}`));
+const server = app.listen(PORT, () => console.log(`server running on PORT: ${PORT}`));
+
+app.set('socketService', new SocketService(server));

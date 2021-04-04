@@ -3,6 +3,7 @@ const tokenService = require('./token.service');
 const mailerService = require('./mailer.service');
 const todoListService = require('./todoList.service');
 const todoItemService = require('./todoItem.service');
+const SocketService = require('./socket.service');
 
 module.exports = {
     userService,
@@ -10,4 +11,5 @@ module.exports = {
     mailerService,
     todoListService,
     todoItemService,
+    SocketService,
 }

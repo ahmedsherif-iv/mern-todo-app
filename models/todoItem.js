@@ -7,6 +7,10 @@ const TodoItemSchema = Schema({
         type: String,
         required: true,
     },
+    isCompleted: {
+        type: Boolean,
+        default: false,
+    },
     note: {
         type: String,
         default: ''

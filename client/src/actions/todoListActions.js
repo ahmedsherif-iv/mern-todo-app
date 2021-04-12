@@ -6,6 +6,9 @@ import {
     TODO_LIST_DELETE_FAIL,
     TODO_LIST_DELETE_REQUEST,
     TODO_LIST_DELETE_SUCCESS,
+    TODO_LISTS_GET_FAIL,
+    TODO_LISTS_GET_REQUEST,
+    TODO_LISTS_GET_SUCCESS,
     TODO_LIST_GET_FAIL,
     TODO_LIST_GET_REQUEST,
     TODO_LIST_GET_SUCCESS,
@@ -49,7 +52,7 @@ export const createTodoList = (name, color = '#0000') => async (dispatch, getSta
 
 export const getTodoLists = () => async (dispatch, getState) => {
     try {
-        dispatch({ type: TODO_LIST_GET_REQUEST });
+        dispatch({ type: TODO_LISTS_GET_REQUEST });
 
         const { userLogin } = getState();
         const { userInfo } = userLogin;
@@ -61,6 +64,37 @@ export const getTodoLists = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.get('/api/todo-lists', config);
+
+        dispatch({
+            type: TODO_LISTS_GET_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: TODO_LISTS_GET_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+}
+
+export const getTodoList = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: TODO_LIST_GET_REQUEST });
+
+        const { userLogin } = getState();
+        const { userInfo } = userLogin;
+
+        const config = {
+            headers: {
+                Authorization: userInfo.token,
+            },
+        };
+
+        const { data } = await axios.get(`/api/todo-lists/${id}`, config);
 
         dispatch({
             type: TODO_LIST_GET_SUCCESS,

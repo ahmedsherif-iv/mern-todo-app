@@ -1,4 +1,5 @@
 const { todoItemService } = require('../services');
+const { Socket } = require('../models');
 
 // @desc    Create a new todo item
 // @route   POST /api/todo-lists/:todoItemId/items
@@ -7,6 +8,15 @@ module.exports.createTodoItem = async (req, res) => {
     try {
         req.body.todoList = req.params.todoListId;
         const todoItem = await todoItemService.createTodoItem(req.body);
+
+        const sockets = await Socket.find({ user: req.user.id });
+        if (sockets) {
+            sockets.forEach(({ socket }) => {
+                console.log(socket);
+                req.app.get("socketService").io.to(socket).emit('items', { item: todoItem, action: "POST" });
+            });
+        }
+
         res.status(201).send(todoItem);
     } catch (error) {
         res.status(400).send({ message: error.message });

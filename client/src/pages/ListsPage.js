@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodoList, getTodoLists } from "../actions/todoListActions";
+import { deleteTodoList, getTodoLists, updateTodoList } from "../actions/todoListActions";
 import ListCard from "../components/ListCard/ListCard";
 import ListsContainer from "../components/ListsContainer/ListsContainer";
 import Navbar from "../components/Navbar/Navbar"
@@ -11,8 +11,8 @@ const ListsPage = ({ history, location }) => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    const todoList = useSelector(state => state.todoList);
-    const { todoLists, isLoading, error } = todoList;
+    const lists = useSelector(state => state.todoLists);
+    const { todoLists, isLoading, error } = lists;
 
     const todoListDelete = useSelector(state => state.todoListDelete);
     const {
@@ -43,6 +43,12 @@ const ListsPage = ({ history, location }) => {
         }
     }
 
+    const handleUpdate = (id) => {
+        if (window.confirm('Are you sure?')) {
+            dispatch(updateTodoList(id));
+        }
+    }
+
     useEffect(() => {
         if (!userInfo) {
             history.replace(redirect);
@@ -58,9 +64,15 @@ const ListsPage = ({ history, location }) => {
             <ListsContainer>
                 {isLoading && (<h1>loading..</h1>)}
                 {todoLists && (todoLists.map(list => (
-                    <ListCard handleDelete={handleDelete} key={list._id} todoList={list} />
+                    <ListCard
+                        handleDelete={handleDelete} handleUpdate={handleUpdate}
+                        key={list._id} todoList={list}
+                    />
                 )))}
             </ListsContainer>
+            {/* <Modal showModal={showUpdateModal} setShowModal={setShowUpdateModal}>
+                <TodoListForm />
+            </Modal> */}
         </>
     );
 }

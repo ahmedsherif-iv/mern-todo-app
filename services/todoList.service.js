@@ -1,4 +1,5 @@
 const { TodoList, SharedTodoList } = require('../models');
+const todoItemService = require('./todoItem.service');
 
 const getTodoLists = async (userId) => {
     const todoLists = await TodoList.find({ createdBy: userId });
@@ -10,8 +11,13 @@ const getTodoLists = async (userId) => {
 }
 
 const getTodoListById = async (id) => {
-    const todoList = await TodoList.findById(id);
+    let todoList = await TodoList.findById(id);
     if (todoList) {
+        const items = await todoItemService.getTodoItems(id);
+        if (items) {
+            todoList = JSON.parse(JSON.stringify(todoList));
+            todoList.items = items;
+        }
         return todoList;
     }
     throw new Error('to do list not found');

@@ -6,6 +6,7 @@ import "./ListsContainer.css";
 
 const ListsContainer = ({ children }) => {
     const [showModal, setShowModal] = useState(false);
+    
 
     const toggleModal = () => {
         setShowModal(prev => !prev);
